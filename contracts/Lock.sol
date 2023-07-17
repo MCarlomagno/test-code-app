@@ -18,13 +18,11 @@ contract Lock {
         );
 
         unlockTime = _unlockTime;
-        
         owner = payable(msg.sender);
     }
 
     function transferOwnership(address payable newOwner) public {
         owner = newOwner;
-        
         emit TransferOwnership(newOwner);
     }
 
