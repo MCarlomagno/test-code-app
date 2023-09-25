@@ -9,6 +9,7 @@ contract Lock {
     address payable public owner;
 
     event Withdrawal(uint amount, uint when);
+    event TransferOwnership(address newOwner);
 
     constructor(uint _unlockTime) payable {
         require(
@@ -18,6 +19,11 @@ contract Lock {
 
         unlockTime = _unlockTime;
         owner = payable(msg.sender);
+    }
+
+    function transferOwnership(address payable newOwner) public {
+        owner = newOwner;
+        emit TransferOwnership(newOwner);
     }
 
     function withdraw() public {
